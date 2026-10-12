@@ -56,4 +56,8 @@ export class LoginPage {
     async verifyInvalidCredentialsErrorMessage() {
         await expect(this.errorMessageLocator).toHaveText(this.errorMessage);
     }
+
+    async verifyUserIsOnLoginPage() {
+        await expect(this.loginButton).toBeVisible();
+    }
 }
