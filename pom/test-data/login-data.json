@@ -1,0 +1,21 @@
+{
+    "validUsername" : "admin",
+
+    "validCase": {
+        "username": "admin",
+        "password": "admin"
+    },
+
+    "invalidPasswordCase" : {
+        "username": "admin",
+        "password": "wrongpassword"
+    },
+    "emptyUsernameCase" : {
+        "username" : "",
+        "password" : "admin"
+    },
+    "emptyPasswordCase" : {
+        "username" : "admin",
+        "password" : ""
+    }
+}

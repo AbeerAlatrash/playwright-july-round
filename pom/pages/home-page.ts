@@ -1,6 +1,5 @@
 import { type Locator, type Page, expect } from '@playwright/test';
 
-
 export class HomePage {
     //Locators
     private readonly welcomeMessageLocator: Locator;
