@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
-import { PageManager } from '../pages/page-manager';
-import homeData from '../test-data/home-data.ts';
-import loginData from '../test-data/login-data.json';
-import { CsvReader } from '../utils/csvReader.ts';
+import { PageManager } from '../../pages/page-manager.ts';
+import homeData from '../../test-data/home-data.ts';
+import loginData from '../../test-data/login-data.json';
+import { CsvReader } from '../../utils/csvReader.ts';
 
 let pageManager: PageManager;
 
