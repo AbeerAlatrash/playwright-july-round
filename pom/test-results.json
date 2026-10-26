@@ -1,0 +1,1987 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\playwright.config.ts",
+    "rootDir": "D:/Test Automation Projects/Test Automation Rounds/playwright-july-round/pom",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "author": "Ashraf",
+      "title": "Playwright Test Automation",
+      "language": "en",
+      "gitCommit": {
+        "shortHash": "a68b995",
+        "hash": "a68b9958f4626e966ee1fa0215768f5f63cd27d4",
+        "subject": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file",
+        "body": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file\n",
+        "author": {
+          "name": "Ashraaf7",
+          "email": "ahmedashraaf09@gmail.com",
+          "time": 1793041691000
+        },
+        "committer": {
+          "name": "Ashraaf7",
+          "email": "ahmedashraaf09@gmail.com",
+          "time": 1793041691000
+        },
+        "branch": "master"
+      },
+      "gitDiff": "diff --git a/pom/.gitignore b/pom/.gitignore\nindex 335bd46..351147e 100644\n--- a/pom/.gitignore\n+++ b/pom/.gitignore\n@@ -6,3 +6,5 @@ node_modules/\n /blob-report/\n /playwright/.cache/\n /playwright/.auth/\n+/test-output\n+/specs/ignoredTests/*\n\\ No newline at end of file\ndiff --git a/pom/playwright.config.ts b/pom/playwright.config.ts\nindex 8cd4d63..b57f102 100644\n--- a/pom/playwright.config.ts\n+++ b/pom/playwright.config.ts\n@@ -12,7 +12,30 @@ import { defineConfig, devices } from '@playwright/test';\n  * See https://playwright.dev/docs/test-configuration.\n  */\n export default defineConfig({\n-  testDir: './specs',\n+  build: {\n+    external: ['**/*bundle.js'],\n+  },\n+  captureGitInfo: {\n+    commit: true, diff: true\n+  },\n+  respectGitIgnore: true,\n+  metadata: {\n+    author: 'Ashraf',\n+    title: 'Playwright Test Automation',\n+    language: 'en'\n+  },\n+  name: 'AA Practice Test Automation',\n+  failOnFlakyTests: !!process.env.CI,\n+  // maxFailures: process.env.CI ? 5 : 2,\n+  outputDir: './test-output',\n+  preserveOutput: 'failures-only',\n+  quiet: true,\n+  // repeatEach: 4,\n+  reportSlowTests: {\n+    threshold: 2000,\n+    max: 1\n+  },\n+  //testDir: './specs',\n   /* Run tests in files in parallel */\n   fullyParallel: true,\n   /* Fail the build on CI if you accidentally left test.only in the source code. */\n@@ -20,17 +43,17 @@ export default defineConfig({\n   /* Retry on CI only */\n   retries: process.env.CI ? 1 : 0, //simplied if\n   /* Opt out of parallel tests on CI. */\n-  workers: process.env.CI ? 1 : 3,\n+  workers: process.env.CI ? 1 : '70%',\n   /* Reporter to use. See https://playwright.dev/docs/test-reporters */\n-  reporter: 'html',\n+  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],\n   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */\n   use: {\n     /* Base URL to use in actions like `await page.goto('')`. */\n-    // baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n-    baseURL: 'http://localhost:5500', //local dev server\n+    baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n+    //  baseURL: 'http://localhost:5500', //local dev server\n \n     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */\n-    trace: 'on-first-retry',\n+    trace: 'on',\n   },\n \n   /* Configure projects for major browsers */",
+      "actualWorkers": 8
+    },
+    "preserveOutput": "failures-only",
+    "projects": [
+      {
+        "outputDir": "D:/Test Automation Projects/Test Automation Rounds/playwright-july-round/pom/test-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "author": "Ashraf",
+          "title": "Playwright Test Automation",
+          "language": "en",
+          "gitCommit": {
+            "shortHash": "a68b995",
+            "hash": "a68b9958f4626e966ee1fa0215768f5f63cd27d4",
+            "subject": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file",
+            "body": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file\n",
+            "author": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "committer": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "branch": "master"
+          },
+          "gitDiff": "diff --git a/pom/.gitignore b/pom/.gitignore\nindex 335bd46..351147e 100644\n--- a/pom/.gitignore\n+++ b/pom/.gitignore\n@@ -6,3 +6,5 @@ node_modules/\n /blob-report/\n /playwright/.cache/\n /playwright/.auth/\n+/test-output\n+/specs/ignoredTests/*\n\\ No newline at end of file\ndiff --git a/pom/playwright.config.ts b/pom/playwright.config.ts\nindex 8cd4d63..b57f102 100644\n--- a/pom/playwright.config.ts\n+++ b/pom/playwright.config.ts\n@@ -12,7 +12,30 @@ import { defineConfig, devices } from '@playwright/test';\n  * See https://playwright.dev/docs/test-configuration.\n  */\n export default defineConfig({\n-  testDir: './specs',\n+  build: {\n+    external: ['**/*bundle.js'],\n+  },\n+  captureGitInfo: {\n+    commit: true, diff: true\n+  },\n+  respectGitIgnore: true,\n+  metadata: {\n+    author: 'Ashraf',\n+    title: 'Playwright Test Automation',\n+    language: 'en'\n+  },\n+  name: 'AA Practice Test Automation',\n+  failOnFlakyTests: !!process.env.CI,\n+  // maxFailures: process.env.CI ? 5 : 2,\n+  outputDir: './test-output',\n+  preserveOutput: 'failures-only',\n+  quiet: true,\n+  // repeatEach: 4,\n+  reportSlowTests: {\n+    threshold: 2000,\n+    max: 1\n+  },\n+  //testDir: './specs',\n   /* Run tests in files in parallel */\n   fullyParallel: true,\n   /* Fail the build on CI if you accidentally left test.only in the source code. */\n@@ -20,17 +43,17 @@ export default defineConfig({\n   /* Retry on CI only */\n   retries: process.env.CI ? 1 : 0, //simplied if\n   /* Opt out of parallel tests on CI. */\n-  workers: process.env.CI ? 1 : 3,\n+  workers: process.env.CI ? 1 : '70%',\n   /* Reporter to use. See https://playwright.dev/docs/test-reporters */\n-  reporter: 'html',\n+  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],\n   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */\n   use: {\n     /* Base URL to use in actions like `await page.goto('')`. */\n-    // baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n-    baseURL: 'http://localhost:5500', //local dev server\n+    baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n+    //  baseURL: 'http://localhost:5500', //local dev server\n \n     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */\n-    trace: 'on-first-retry',\n+    trace: 'on',\n   },\n \n   /* Configure projects for major browsers */",
+          "actualWorkers": 8
+        },
+        "id": "chrome",
+        "name": "chrome",
+        "testDir": "D:/Test Automation Projects/Test Automation Rounds/playwright-july-round/pom",
+        "testIgnore": [
+          "**/specs/ignoredTests/**"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "D:/Test Automation Projects/Test Automation Rounds/playwright-july-round/pom/test-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "author": "Ashraf",
+          "title": "Playwright Test Automation",
+          "language": "en",
+          "gitCommit": {
+            "shortHash": "a68b995",
+            "hash": "a68b9958f4626e966ee1fa0215768f5f63cd27d4",
+            "subject": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file",
+            "body": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file\n",
+            "author": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "committer": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "branch": "master"
+          },
+          "gitDiff": "diff --git a/pom/.gitignore b/pom/.gitignore\nindex 335bd46..351147e 100644\n--- a/pom/.gitignore\n+++ b/pom/.gitignore\n@@ -6,3 +6,5 @@ node_modules/\n /blob-report/\n /playwright/.cache/\n /playwright/.auth/\n+/test-output\n+/specs/ignoredTests/*\n\\ No newline at end of file\ndiff --git a/pom/playwright.config.ts b/pom/playwright.config.ts\nindex 8cd4d63..b57f102 100644\n--- a/pom/playwright.config.ts\n+++ b/pom/playwright.config.ts\n@@ -12,7 +12,30 @@ import { defineConfig, devices } from '@playwright/test';\n  * See https://playwright.dev/docs/test-configuration.\n  */\n export default defineConfig({\n-  testDir: './specs',\n+  build: {\n+    external: ['**/*bundle.js'],\n+  },\n+  captureGitInfo: {\n+    commit: true, diff: true\n+  },\n+  respectGitIgnore: true,\n+  metadata: {\n+    author: 'Ashraf',\n+    title: 'Playwright Test Automation',\n+    language: 'en'\n+  },\n+  name: 'AA Practice Test Automation',\n+  failOnFlakyTests: !!process.env.CI,\n+  // maxFailures: process.env.CI ? 5 : 2,\n+  outputDir: './test-output',\n+  preserveOutput: 'failures-only',\n+  quiet: true,\n+  // repeatEach: 4,\n+  reportSlowTests: {\n+    threshold: 2000,\n+    max: 1\n+  },\n+  //testDir: './specs',\n   /* Run tests in files in parallel */\n   fullyParallel: true,\n   /* Fail the build on CI if you accidentally left test.only in the source code. */\n@@ -20,17 +43,17 @@ export default defineConfig({\n   /* Retry on CI only */\n   retries: process.env.CI ? 1 : 0, //simplied if\n   /* Opt out of parallel tests on CI. */\n-  workers: process.env.CI ? 1 : 3,\n+  workers: process.env.CI ? 1 : '70%',\n   /* Reporter to use. See https://playwright.dev/docs/test-reporters */\n-  reporter: 'html',\n+  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],\n   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */\n   use: {\n     /* Base URL to use in actions like `await page.goto('')`. */\n-    // baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n-    baseURL: 'http://localhost:5500', //local dev server\n+    baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n+    //  baseURL: 'http://localhost:5500', //local dev server\n \n     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */\n-    trace: 'on-first-retry',\n+    trace: 'on',\n   },\n \n   /* Configure projects for major browsers */",
+          "actualWorkers": 8
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "D:/Test Automation Projects/Test Automation Rounds/playwright-july-round/pom",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "D:/Test Automation Projects/Test Automation Rounds/playwright-july-round/pom/test-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "author": "Ashraf",
+          "title": "Playwright Test Automation",
+          "language": "en",
+          "gitCommit": {
+            "shortHash": "a68b995",
+            "hash": "a68b9958f4626e966ee1fa0215768f5f63cd27d4",
+            "subject": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file",
+            "body": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file\n",
+            "author": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "committer": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "branch": "master"
+          },
+          "gitDiff": "diff --git a/pom/.gitignore b/pom/.gitignore\nindex 335bd46..351147e 100644\n--- a/pom/.gitignore\n+++ b/pom/.gitignore\n@@ -6,3 +6,5 @@ node_modules/\n /blob-report/\n /playwright/.cache/\n /playwright/.auth/\n+/test-output\n+/specs/ignoredTests/*\n\\ No newline at end of file\ndiff --git a/pom/playwright.config.ts b/pom/playwright.config.ts\nindex 8cd4d63..b57f102 100644\n--- a/pom/playwright.config.ts\n+++ b/pom/playwright.config.ts\n@@ -12,7 +12,30 @@ import { defineConfig, devices } from '@playwright/test';\n  * See https://playwright.dev/docs/test-configuration.\n  */\n export default defineConfig({\n-  testDir: './specs',\n+  build: {\n+    external: ['**/*bundle.js'],\n+  },\n+  captureGitInfo: {\n+    commit: true, diff: true\n+  },\n+  respectGitIgnore: true,\n+  metadata: {\n+    author: 'Ashraf',\n+    title: 'Playwright Test Automation',\n+    language: 'en'\n+  },\n+  name: 'AA Practice Test Automation',\n+  failOnFlakyTests: !!process.env.CI,\n+  // maxFailures: process.env.CI ? 5 : 2,\n+  outputDir: './test-output',\n+  preserveOutput: 'failures-only',\n+  quiet: true,\n+  // repeatEach: 4,\n+  reportSlowTests: {\n+    threshold: 2000,\n+    max: 1\n+  },\n+  //testDir: './specs',\n   /* Run tests in files in parallel */\n   fullyParallel: true,\n   /* Fail the build on CI if you accidentally left test.only in the source code. */\n@@ -20,17 +43,17 @@ export default defineConfig({\n   /* Retry on CI only */\n   retries: process.env.CI ? 1 : 0, //simplied if\n   /* Opt out of parallel tests on CI. */\n-  workers: process.env.CI ? 1 : 3,\n+  workers: process.env.CI ? 1 : '70%',\n   /* Reporter to use. See https://playwright.dev/docs/test-reporters */\n-  reporter: 'html',\n+  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],\n   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */\n   use: {\n     /* Base URL to use in actions like `await page.goto('')`. */\n-    // baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n-    baseURL: 'http://localhost:5500', //local dev server\n+    baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n+    //  baseURL: 'http://localhost:5500', //local dev server\n \n     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */\n-    trace: 'on-first-retry',\n+    trace: 'on',\n   },\n \n   /* Configure projects for major browsers */",
+          "actualWorkers": 8
+        },
+        "id": "safari",
+        "name": "safari",
+        "testDir": "D:/Test Automation Projects/Test Automation Rounds/playwright-july-round/pom",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "D:/Test Automation Projects/Test Automation Rounds/playwright-july-round/pom/test-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "author": "Ashraf",
+          "title": "Playwright Test Automation",
+          "language": "en",
+          "gitCommit": {
+            "shortHash": "a68b995",
+            "hash": "a68b9958f4626e966ee1fa0215768f5f63cd27d4",
+            "subject": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file",
+            "body": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file\n",
+            "author": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "committer": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "branch": "master"
+          },
+          "gitDiff": "diff --git a/pom/.gitignore b/pom/.gitignore\nindex 335bd46..351147e 100644\n--- a/pom/.gitignore\n+++ b/pom/.gitignore\n@@ -6,3 +6,5 @@ node_modules/\n /blob-report/\n /playwright/.cache/\n /playwright/.auth/\n+/test-output\n+/specs/ignoredTests/*\n\\ No newline at end of file\ndiff --git a/pom/playwright.config.ts b/pom/playwright.config.ts\nindex 8cd4d63..b57f102 100644\n--- a/pom/playwright.config.ts\n+++ b/pom/playwright.config.ts\n@@ -12,7 +12,30 @@ import { defineConfig, devices } from '@playwright/test';\n  * See https://playwright.dev/docs/test-configuration.\n  */\n export default defineConfig({\n-  testDir: './specs',\n+  build: {\n+    external: ['**/*bundle.js'],\n+  },\n+  captureGitInfo: {\n+    commit: true, diff: true\n+  },\n+  respectGitIgnore: true,\n+  metadata: {\n+    author: 'Ashraf',\n+    title: 'Playwright Test Automation',\n+    language: 'en'\n+  },\n+  name: 'AA Practice Test Automation',\n+  failOnFlakyTests: !!process.env.CI,\n+  // maxFailures: process.env.CI ? 5 : 2,\n+  outputDir: './test-output',\n+  preserveOutput: 'failures-only',\n+  quiet: true,\n+  // repeatEach: 4,\n+  reportSlowTests: {\n+    threshold: 2000,\n+    max: 1\n+  },\n+  //testDir: './specs',\n   /* Run tests in files in parallel */\n   fullyParallel: true,\n   /* Fail the build on CI if you accidentally left test.only in the source code. */\n@@ -20,17 +43,17 @@ export default defineConfig({\n   /* Retry on CI only */\n   retries: process.env.CI ? 1 : 0, //simplied if\n   /* Opt out of parallel tests on CI. */\n-  workers: process.env.CI ? 1 : 3,\n+  workers: process.env.CI ? 1 : '70%',\n   /* Reporter to use. See https://playwright.dev/docs/test-reporters */\n-  reporter: 'html',\n+  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],\n   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */\n   use: {\n     /* Base URL to use in actions like `await page.goto('')`. */\n-    // baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n-    baseURL: 'http://localhost:5500', //local dev server\n+    baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n+    //  baseURL: 'http://localhost:5500', //local dev server\n \n     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */\n-    trace: 'on-first-retry',\n+    trace: 'on',\n   },\n \n   /* Configure projects for major browsers */",
+          "actualWorkers": 8
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "D:/Test Automation Projects/Test Automation Rounds/playwright-july-round/pom",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "D:/Test Automation Projects/Test Automation Rounds/playwright-july-round/pom/test-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "author": "Ashraf",
+          "title": "Playwright Test Automation",
+          "language": "en",
+          "gitCommit": {
+            "shortHash": "a68b995",
+            "hash": "a68b9958f4626e966ee1fa0215768f5f63cd27d4",
+            "subject": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file",
+            "body": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file\n",
+            "author": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "committer": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "branch": "master"
+          },
+          "gitDiff": "diff --git a/pom/.gitignore b/pom/.gitignore\nindex 335bd46..351147e 100644\n--- a/pom/.gitignore\n+++ b/pom/.gitignore\n@@ -6,3 +6,5 @@ node_modules/\n /blob-report/\n /playwright/.cache/\n /playwright/.auth/\n+/test-output\n+/specs/ignoredTests/*\n\\ No newline at end of file\ndiff --git a/pom/playwright.config.ts b/pom/playwright.config.ts\nindex 8cd4d63..b57f102 100644\n--- a/pom/playwright.config.ts\n+++ b/pom/playwright.config.ts\n@@ -12,7 +12,30 @@ import { defineConfig, devices } from '@playwright/test';\n  * See https://playwright.dev/docs/test-configuration.\n  */\n export default defineConfig({\n-  testDir: './specs',\n+  build: {\n+    external: ['**/*bundle.js'],\n+  },\n+  captureGitInfo: {\n+    commit: true, diff: true\n+  },\n+  respectGitIgnore: true,\n+  metadata: {\n+    author: 'Ashraf',\n+    title: 'Playwright Test Automation',\n+    language: 'en'\n+  },\n+  name: 'AA Practice Test Automation',\n+  failOnFlakyTests: !!process.env.CI,\n+  // maxFailures: process.env.CI ? 5 : 2,\n+  outputDir: './test-output',\n+  preserveOutput: 'failures-only',\n+  quiet: true,\n+  // repeatEach: 4,\n+  reportSlowTests: {\n+    threshold: 2000,\n+    max: 1\n+  },\n+  //testDir: './specs',\n   /* Run tests in files in parallel */\n   fullyParallel: true,\n   /* Fail the build on CI if you accidentally left test.only in the source code. */\n@@ -20,17 +43,17 @@ export default defineConfig({\n   /* Retry on CI only */\n   retries: process.env.CI ? 1 : 0, //simplied if\n   /* Opt out of parallel tests on CI. */\n-  workers: process.env.CI ? 1 : 3,\n+  workers: process.env.CI ? 1 : '70%',\n   /* Reporter to use. See https://playwright.dev/docs/test-reporters */\n-  reporter: 'html',\n+  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],\n   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */\n   use: {\n     /* Base URL to use in actions like `await page.goto('')`. */\n-    // baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n-    baseURL: 'http://localhost:5500', //local dev server\n+    baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n+    //  baseURL: 'http://localhost:5500', //local dev server\n \n     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */\n-    trace: 'on-first-retry',\n+    trace: 'on',\n   },\n \n   /* Configure projects for major browsers */",
+          "actualWorkers": 8
+        },
+        "id": "invalidLogin",
+        "name": "invalidLogin",
+        "testDir": "D:/Test Automation Projects/Test Automation Rounds/playwright-july-round/pom",
+        "testIgnore": [],
+        "testMatch": [
+          "**/specs/invalid-login.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "author": "Ashraf",
+          "title": "Playwright Test Automation",
+          "language": "en",
+          "gitCommit": {
+            "shortHash": "a68b995",
+            "hash": "a68b9958f4626e966ee1fa0215768f5f63cd27d4",
+            "subject": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file",
+            "body": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file\n",
+            "author": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "committer": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "branch": "master"
+          },
+          "gitDiff": "diff --git a/pom/.gitignore b/pom/.gitignore\nindex 335bd46..351147e 100644\n--- a/pom/.gitignore\n+++ b/pom/.gitignore\n@@ -6,3 +6,5 @@ node_modules/\n /blob-report/\n /playwright/.cache/\n /playwright/.auth/\n+/test-output\n+/specs/ignoredTests/*\n\\ No newline at end of file\ndiff --git a/pom/playwright.config.ts b/pom/playwright.config.ts\nindex 8cd4d63..b57f102 100644\n--- a/pom/playwright.config.ts\n+++ b/pom/playwright.config.ts\n@@ -12,7 +12,30 @@ import { defineConfig, devices } from '@playwright/test';\n  * See https://playwright.dev/docs/test-configuration.\n  */\n export default defineConfig({\n-  testDir: './specs',\n+  build: {\n+    external: ['**/*bundle.js'],\n+  },\n+  captureGitInfo: {\n+    commit: true, diff: true\n+  },\n+  respectGitIgnore: true,\n+  metadata: {\n+    author: 'Ashraf',\n+    title: 'Playwright Test Automation',\n+    language: 'en'\n+  },\n+  name: 'AA Practice Test Automation',\n+  failOnFlakyTests: !!process.env.CI,\n+  // maxFailures: process.env.CI ? 5 : 2,\n+  outputDir: './test-output',\n+  preserveOutput: 'failures-only',\n+  quiet: true,\n+  // repeatEach: 4,\n+  reportSlowTests: {\n+    threshold: 2000,\n+    max: 1\n+  },\n+  //testDir: './specs',\n   /* Run tests in files in parallel */\n   fullyParallel: true,\n   /* Fail the build on CI if you accidentally left test.only in the source code. */\n@@ -20,17 +43,17 @@ export default defineConfig({\n   /* Retry on CI only */\n   retries: process.env.CI ? 1 : 0, //simplied if\n   /* Opt out of parallel tests on CI. */\n-  workers: process.env.CI ? 1 : 3,\n+  workers: process.env.CI ? 1 : '70%',\n   /* Reporter to use. See https://playwright.dev/docs/test-reporters */\n-  reporter: 'html',\n+  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],\n   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */\n   use: {\n     /* Base URL to use in actions like `await page.goto('')`. */\n-    // baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n-    baseURL: 'http://localhost:5500', //local dev server\n+    baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n+    //  baseURL: 'http://localhost:5500', //local dev server\n \n     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */\n-    trace: 'on-first-retry',\n+    trace: 'on',\n   },\n \n   /* Configure projects for major browsers */",
+          "actualWorkers": 8
+        },
+        "name": "chrome",
+        "testDir": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom",
+        "snapshotDir": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom",
+        "testIgnore": [
+          "**/specs/ignoredTests/**"
+        ],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "https://aa-practice-test-automation.vercel.app",
+          "trace": "on",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chrome"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "author": "Ashraf",
+          "title": "Playwright Test Automation",
+          "language": "en",
+          "gitCommit": {
+            "shortHash": "a68b995",
+            "hash": "a68b9958f4626e966ee1fa0215768f5f63cd27d4",
+            "subject": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file",
+            "body": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file\n",
+            "author": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "committer": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "branch": "master"
+          },
+          "gitDiff": "diff --git a/pom/.gitignore b/pom/.gitignore\nindex 335bd46..351147e 100644\n--- a/pom/.gitignore\n+++ b/pom/.gitignore\n@@ -6,3 +6,5 @@ node_modules/\n /blob-report/\n /playwright/.cache/\n /playwright/.auth/\n+/test-output\n+/specs/ignoredTests/*\n\\ No newline at end of file\ndiff --git a/pom/playwright.config.ts b/pom/playwright.config.ts\nindex 8cd4d63..b57f102 100644\n--- a/pom/playwright.config.ts\n+++ b/pom/playwright.config.ts\n@@ -12,7 +12,30 @@ import { defineConfig, devices } from '@playwright/test';\n  * See https://playwright.dev/docs/test-configuration.\n  */\n export default defineConfig({\n-  testDir: './specs',\n+  build: {\n+    external: ['**/*bundle.js'],\n+  },\n+  captureGitInfo: {\n+    commit: true, diff: true\n+  },\n+  respectGitIgnore: true,\n+  metadata: {\n+    author: 'Ashraf',\n+    title: 'Playwright Test Automation',\n+    language: 'en'\n+  },\n+  name: 'AA Practice Test Automation',\n+  failOnFlakyTests: !!process.env.CI,\n+  // maxFailures: process.env.CI ? 5 : 2,\n+  outputDir: './test-output',\n+  preserveOutput: 'failures-only',\n+  quiet: true,\n+  // repeatEach: 4,\n+  reportSlowTests: {\n+    threshold: 2000,\n+    max: 1\n+  },\n+  //testDir: './specs',\n   /* Run tests in files in parallel */\n   fullyParallel: true,\n   /* Fail the build on CI if you accidentally left test.only in the source code. */\n@@ -20,17 +43,17 @@ export default defineConfig({\n   /* Retry on CI only */\n   retries: process.env.CI ? 1 : 0, //simplied if\n   /* Opt out of parallel tests on CI. */\n-  workers: process.env.CI ? 1 : 3,\n+  workers: process.env.CI ? 1 : '70%',\n   /* Reporter to use. See https://playwright.dev/docs/test-reporters */\n-  reporter: 'html',\n+  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],\n   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */\n   use: {\n     /* Base URL to use in actions like `await page.goto('')`. */\n-    // baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n-    baseURL: 'http://localhost:5500', //local dev server\n+    baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n+    //  baseURL: 'http://localhost:5500', //local dev server\n \n     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */\n-    trace: 'on-first-retry',\n+    trace: 'on',\n   },\n \n   /* Configure projects for major browsers */",
+          "actualWorkers": 8
+        },
+        "name": "firefox",
+        "testDir": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom",
+        "snapshotDir": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "https://aa-practice-test-automation.vercel.app",
+          "trace": "on",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:157.0) Gecko/20100101 Firefox/157.0",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "firefox"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "firefox"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "author": "Ashraf",
+          "title": "Playwright Test Automation",
+          "language": "en",
+          "gitCommit": {
+            "shortHash": "a68b995",
+            "hash": "a68b9958f4626e966ee1fa0215768f5f63cd27d4",
+            "subject": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file",
+            "body": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file\n",
+            "author": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "committer": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "branch": "master"
+          },
+          "gitDiff": "diff --git a/pom/.gitignore b/pom/.gitignore\nindex 335bd46..351147e 100644\n--- a/pom/.gitignore\n+++ b/pom/.gitignore\n@@ -6,3 +6,5 @@ node_modules/\n /blob-report/\n /playwright/.cache/\n /playwright/.auth/\n+/test-output\n+/specs/ignoredTests/*\n\\ No newline at end of file\ndiff --git a/pom/playwright.config.ts b/pom/playwright.config.ts\nindex 8cd4d63..b57f102 100644\n--- a/pom/playwright.config.ts\n+++ b/pom/playwright.config.ts\n@@ -12,7 +12,30 @@ import { defineConfig, devices } from '@playwright/test';\n  * See https://playwright.dev/docs/test-configuration.\n  */\n export default defineConfig({\n-  testDir: './specs',\n+  build: {\n+    external: ['**/*bundle.js'],\n+  },\n+  captureGitInfo: {\n+    commit: true, diff: true\n+  },\n+  respectGitIgnore: true,\n+  metadata: {\n+    author: 'Ashraf',\n+    title: 'Playwright Test Automation',\n+    language: 'en'\n+  },\n+  name: 'AA Practice Test Automation',\n+  failOnFlakyTests: !!process.env.CI,\n+  // maxFailures: process.env.CI ? 5 : 2,\n+  outputDir: './test-output',\n+  preserveOutput: 'failures-only',\n+  quiet: true,\n+  // repeatEach: 4,\n+  reportSlowTests: {\n+    threshold: 2000,\n+    max: 1\n+  },\n+  //testDir: './specs',\n   /* Run tests in files in parallel */\n   fullyParallel: true,\n   /* Fail the build on CI if you accidentally left test.only in the source code. */\n@@ -20,17 +43,17 @@ export default defineConfig({\n   /* Retry on CI only */\n   retries: process.env.CI ? 1 : 0, //simplied if\n   /* Opt out of parallel tests on CI. */\n-  workers: process.env.CI ? 1 : 3,\n+  workers: process.env.CI ? 1 : '70%',\n   /* Reporter to use. See https://playwright.dev/docs/test-reporters */\n-  reporter: 'html',\n+  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],\n   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */\n   use: {\n     /* Base URL to use in actions like `await page.goto('')`. */\n-    // baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n-    baseURL: 'http://localhost:5500', //local dev server\n+    baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n+    //  baseURL: 'http://localhost:5500', //local dev server\n \n     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */\n-    trace: 'on-first-retry',\n+    trace: 'on',\n   },\n \n   /* Configure projects for major browsers */",
+          "actualWorkers": 8
+        },
+        "name": "safari",
+        "testDir": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom",
+        "snapshotDir": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "https://aa-practice-test-automation.vercel.app",
+          "trace": "on",
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Safari/605.1.15",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1792,
+            "height": 1120
+          },
+          "deviceScaleFactor": 2,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "safari"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "author": "Ashraf",
+          "title": "Playwright Test Automation",
+          "language": "en",
+          "gitCommit": {
+            "shortHash": "a68b995",
+            "hash": "a68b9958f4626e966ee1fa0215768f5f63cd27d4",
+            "subject": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file",
+            "body": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file\n",
+            "author": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "committer": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "branch": "master"
+          },
+          "gitDiff": "diff --git a/pom/.gitignore b/pom/.gitignore\nindex 335bd46..351147e 100644\n--- a/pom/.gitignore\n+++ b/pom/.gitignore\n@@ -6,3 +6,5 @@ node_modules/\n /blob-report/\n /playwright/.cache/\n /playwright/.auth/\n+/test-output\n+/specs/ignoredTests/*\n\\ No newline at end of file\ndiff --git a/pom/playwright.config.ts b/pom/playwright.config.ts\nindex 8cd4d63..b57f102 100644\n--- a/pom/playwright.config.ts\n+++ b/pom/playwright.config.ts\n@@ -12,7 +12,30 @@ import { defineConfig, devices } from '@playwright/test';\n  * See https://playwright.dev/docs/test-configuration.\n  */\n export default defineConfig({\n-  testDir: './specs',\n+  build: {\n+    external: ['**/*bundle.js'],\n+  },\n+  captureGitInfo: {\n+    commit: true, diff: true\n+  },\n+  respectGitIgnore: true,\n+  metadata: {\n+    author: 'Ashraf',\n+    title: 'Playwright Test Automation',\n+    language: 'en'\n+  },\n+  name: 'AA Practice Test Automation',\n+  failOnFlakyTests: !!process.env.CI,\n+  // maxFailures: process.env.CI ? 5 : 2,\n+  outputDir: './test-output',\n+  preserveOutput: 'failures-only',\n+  quiet: true,\n+  // repeatEach: 4,\n+  reportSlowTests: {\n+    threshold: 2000,\n+    max: 1\n+  },\n+  //testDir: './specs',\n   /* Run tests in files in parallel */\n   fullyParallel: true,\n   /* Fail the build on CI if you accidentally left test.only in the source code. */\n@@ -20,17 +43,17 @@ export default defineConfig({\n   /* Retry on CI only */\n   retries: process.env.CI ? 1 : 0, //simplied if\n   /* Opt out of parallel tests on CI. */\n-  workers: process.env.CI ? 1 : 3,\n+  workers: process.env.CI ? 1 : '70%',\n   /* Reporter to use. See https://playwright.dev/docs/test-reporters */\n-  reporter: 'html',\n+  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],\n   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */\n   use: {\n     /* Base URL to use in actions like `await page.goto('')`. */\n-    // baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n-    baseURL: 'http://localhost:5500', //local dev server\n+    baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n+    //  baseURL: 'http://localhost:5500', //local dev server\n \n     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */\n-    trace: 'on-first-retry',\n+    trace: 'on',\n   },\n \n   /* Configure projects for major browsers */",
+          "actualWorkers": 8
+        },
+        "name": "mobile",
+        "testDir": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom",
+        "snapshotDir": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "https://aa-practice-test-automation.vercel.app",
+          "trace": "on",
+          "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.2 Mobile/15E148 Safari/604.1",
+          "viewport": {
+            "width": 440,
+            "height": 763
+          },
+          "screen": {
+            "width": 440,
+            "height": 956
+          },
+          "deviceScaleFactor": 3,
+          "isMobile": true,
+          "hasTouch": true,
+          "defaultBrowserType": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "mobile"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "author": "Ashraf",
+          "title": "Playwright Test Automation",
+          "language": "en",
+          "gitCommit": {
+            "shortHash": "a68b995",
+            "hash": "a68b9958f4626e966ee1fa0215768f5f63cd27d4",
+            "subject": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file",
+            "body": "refactor(e2e): remove deprecated homeIgnore.spec.ts test file\n",
+            "author": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "committer": {
+              "name": "Ashraaf7",
+              "email": "ahmedashraaf09@gmail.com",
+              "time": 1793041691000
+            },
+            "branch": "master"
+          },
+          "gitDiff": "diff --git a/pom/.gitignore b/pom/.gitignore\nindex 335bd46..351147e 100644\n--- a/pom/.gitignore\n+++ b/pom/.gitignore\n@@ -6,3 +6,5 @@ node_modules/\n /blob-report/\n /playwright/.cache/\n /playwright/.auth/\n+/test-output\n+/specs/ignoredTests/*\n\\ No newline at end of file\ndiff --git a/pom/playwright.config.ts b/pom/playwright.config.ts\nindex 8cd4d63..b57f102 100644\n--- a/pom/playwright.config.ts\n+++ b/pom/playwright.config.ts\n@@ -12,7 +12,30 @@ import { defineConfig, devices } from '@playwright/test';\n  * See https://playwright.dev/docs/test-configuration.\n  */\n export default defineConfig({\n-  testDir: './specs',\n+  build: {\n+    external: ['**/*bundle.js'],\n+  },\n+  captureGitInfo: {\n+    commit: true, diff: true\n+  },\n+  respectGitIgnore: true,\n+  metadata: {\n+    author: 'Ashraf',\n+    title: 'Playwright Test Automation',\n+    language: 'en'\n+  },\n+  name: 'AA Practice Test Automation',\n+  failOnFlakyTests: !!process.env.CI,\n+  // maxFailures: process.env.CI ? 5 : 2,\n+  outputDir: './test-output',\n+  preserveOutput: 'failures-only',\n+  quiet: true,\n+  // repeatEach: 4,\n+  reportSlowTests: {\n+    threshold: 2000,\n+    max: 1\n+  },\n+  //testDir: './specs',\n   /* Run tests in files in parallel */\n   fullyParallel: true,\n   /* Fail the build on CI if you accidentally left test.only in the source code. */\n@@ -20,17 +43,17 @@ export default defineConfig({\n   /* Retry on CI only */\n   retries: process.env.CI ? 1 : 0, //simplied if\n   /* Opt out of parallel tests on CI. */\n-  workers: process.env.CI ? 1 : 3,\n+  workers: process.env.CI ? 1 : '70%',\n   /* Reporter to use. See https://playwright.dev/docs/test-reporters */\n-  reporter: 'html',\n+  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],\n   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */\n   use: {\n     /* Base URL to use in actions like `await page.goto('')`. */\n-    // baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n-    baseURL: 'http://localhost:5500', //local dev server\n+    baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server\n+    //  baseURL: 'http://localhost:5500', //local dev server\n \n     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */\n-    trace: 'on-first-retry',\n+    trace: 'on',\n   },\n \n   /* Configure projects for major browsers */",
+          "actualWorkers": 8
+        },
+        "name": "invalidLogin",
+        "testDir": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom",
+        "snapshotDir": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom",
+        "testIgnore": [],
+        "testMatch": [
+          "**/specs/invalid-login.spec.ts"
+        ],
+        "timeout": 30000,
+        "use": {
+          "baseURL": "https://aa-practice-test-automation.vercel.app",
+          "trace": "on",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "invalidLogin"
+      }
+    ],
+    "quiet": true,
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "threshold": 2000,
+      "max": 1
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 8,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "specs\\home.spec.ts",
+      "file": "specs/home.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Verify that the home page is accessible after login",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chrome",
+              "projectName": "chrome",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3377,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Starting the test suite\n"
+                    },
+                    {
+                      "text": "CSV file loaded successfully\n"
+                    },
+                    {
+                      "text": "Available columns: [ \u001b[32m'username'\u001b[39m, \u001b[32m'password'\u001b[39m ]\n"
+                    },
+                    {
+                      "text": "First row data: { username: \u001b[32m'admin'\u001b[39m, password: \u001b[32m'admin'\u001b[39m }\n"
+                    },
+                    {
+                      "text": "Test completed\n"
+                    },
+                    {
+                      "text": "All tests completed\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:03.440Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-home-Verify-that-the-94dff-e-is-accessible-after-login-chrome\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 11051,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Starting the test suite\n"
+                    },
+                    {
+                      "text": "CSV file loaded successfully\n"
+                    },
+                    {
+                      "text": "Available columns: [ \u001b[32m'username'\u001b[39m, \u001b[32m'password'\u001b[39m ]\n"
+                    },
+                    {
+                      "text": "First row data: { username: \u001b[32m'admin'\u001b[39m, password: \u001b[32m'admin'\u001b[39m }\n"
+                    },
+                    {
+                      "text": "Test completed\n"
+                    },
+                    {
+                      "text": "All tests completed\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:08.124Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-home-Verify-that-the-94dff-e-is-accessible-after-login-firefox\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "safari",
+              "projectName": "safari",
+              "results": [
+                {
+                  "workerIndex": 16,
+                  "parallelIndex": 4,
+                  "status": "passed",
+                  "duration": 4821,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Starting the test suite\n"
+                    },
+                    {
+                      "text": "CSV file loaded successfully\n"
+                    },
+                    {
+                      "text": "Available columns: [ \u001b[32m'username'\u001b[39m, \u001b[32m'password'\u001b[39m ]\n"
+                    },
+                    {
+                      "text": "First row data: { username: \u001b[32m'admin'\u001b[39m, password: \u001b[32m'admin'\u001b[39m }\n"
+                    },
+                    {
+                      "text": "Test completed\n"
+                    },
+                    {
+                      "text": "All tests completed\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:27.738Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-home-Verify-that-the-94dff-e-is-accessible-after-login-safari\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 24,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3331,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Starting the test suite\n"
+                    },
+                    {
+                      "text": "CSV file loaded successfully\n"
+                    },
+                    {
+                      "text": "Available columns: [ \u001b[32m'username'\u001b[39m, \u001b[32m'password'\u001b[39m ]\n"
+                    },
+                    {
+                      "text": "First row data: { username: \u001b[32m'admin'\u001b[39m, password: \u001b[32m'admin'\u001b[39m }\n"
+                    },
+                    {
+                      "text": "Test completed\n"
+                    },
+                    {
+                      "text": "All tests completed\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:33.814Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-home-Verify-that-the-94dff-e-is-accessible-after-login-mobile\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7e53a42d8ab4d4542cd3-39e1c1fd13d0eb32f0ea",
+          "file": "specs/home.spec.ts",
+          "line": 24,
+          "column": 5
+        },
+        {
+          "title": "Verify that the user can logout from the home page",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chrome",
+              "projectName": "chrome",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4101,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Starting the test suite\n"
+                    },
+                    {
+                      "text": "CSV file loaded successfully\n"
+                    },
+                    {
+                      "text": "Available columns: [ \u001b[32m'username'\u001b[39m, \u001b[32m'password'\u001b[39m ]\n"
+                    },
+                    {
+                      "text": "First row data: { username: \u001b[32m'admin'\u001b[39m, password: \u001b[32m'admin'\u001b[39m }\n"
+                    },
+                    {
+                      "text": "Test completed\n"
+                    },
+                    {
+                      "text": "All tests completed\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:03.447Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-home-Verify-that-the-ac0d1-n-logout-from-the-home-page-chrome\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 5,
+                  "status": "passed",
+                  "duration": 8701,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Starting the test suite\n"
+                    },
+                    {
+                      "text": "CSV file loaded successfully\n"
+                    },
+                    {
+                      "text": "Available columns: [ \u001b[32m'username'\u001b[39m, \u001b[32m'password'\u001b[39m ]\n"
+                    },
+                    {
+                      "text": "First row data: { username: \u001b[32m'admin'\u001b[39m, password: \u001b[32m'admin'\u001b[39m }\n"
+                    },
+                    {
+                      "text": "Test completed\n"
+                    },
+                    {
+                      "text": "All tests completed\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:08.526Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-home-Verify-that-the-ac0d1-n-logout-from-the-home-page-firefox\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "safari",
+              "projectName": "safari",
+              "results": [
+                {
+                  "workerIndex": 17,
+                  "parallelIndex": 7,
+                  "status": "passed",
+                  "duration": 5128,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Starting the test suite\n"
+                    },
+                    {
+                      "text": "CSV file loaded successfully\n"
+                    },
+                    {
+                      "text": "Available columns: [ \u001b[32m'username'\u001b[39m, \u001b[32m'password'\u001b[39m ]\n"
+                    },
+                    {
+                      "text": "First row data: { username: \u001b[32m'admin'\u001b[39m, password: \u001b[32m'admin'\u001b[39m }\n"
+                    },
+                    {
+                      "text": "Test completed\n"
+                    },
+                    {
+                      "text": "All tests completed\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:28.010Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-home-Verify-that-the-ac0d1-n-logout-from-the-home-page-safari\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 25,
+                  "parallelIndex": 6,
+                  "status": "timedOut",
+                  "duration": 30098,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\pages\\home-page.ts",
+                        "column": 40,
+                        "line": 25
+                      },
+                      "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Logout' })\u001b[22m\n\n\n\u001b[90m   at \u001b[39mpages\\home-page.ts:25\n\n\u001b[0m \u001b[90m 23 |\u001b[39m     }\n \u001b[90m 24 |\u001b[39m     \u001b[36masync\u001b[39m clickLogoutButton() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 25 |\u001b[39m         \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mlogoutButtonLocator\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 26 |\u001b[39m     }\n \u001b[90m 27 |\u001b[39m\n \u001b[90m 28 |\u001b[39m     \u001b[90m//Assertions\u001b[39m\u001b[0m\n\u001b[2m    at HomePage.clickLogoutButton (D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\pages\\home-page.ts:25:40)\u001b[22m\n\u001b[2m    at D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\specs\\home.spec.ts:30:37\u001b[22m"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "Starting the test suite\n"
+                    },
+                    {
+                      "text": "CSV file loaded successfully\n"
+                    },
+                    {
+                      "text": "Available columns: [ \u001b[32m'username'\u001b[39m, \u001b[32m'password'\u001b[39m ]\n"
+                    },
+                    {
+                      "text": "First row data: { username: \u001b[32m'admin'\u001b[39m, password: \u001b[32m'admin'\u001b[39m }\n"
+                    },
+                    {
+                      "text": "Test completed\n"
+                    },
+                    {
+                      "text": "All tests completed\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:34.053Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-home-Verify-that-the-ac0d1-n-logout-from-the-home-page-mobile\\error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-home-Verify-that-the-ac0d1-n-logout-from-the-home-page-mobile\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-home-Verify-that-the-ac0d1-n-logout-from-the-home-page-mobile\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "7e53a42d8ab4d4542cd3-3371a31c7f21af02df77",
+          "file": "specs/home.spec.ts",
+          "line": 29,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "specs\\invalid-login.spec.ts",
+      "file": "specs/invalid-login.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Verify that the user cannot login with invalid credentials using invalidUsername & admin",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chrome",
+              "projectName": "chrome",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 3599,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:03.521Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-invalid-login-Verify-48601-using-invalidUsername-admin-chrome\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 7,
+                  "status": "passed",
+                  "duration": 4463,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:08.463Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-invalid-login-Verify-48601-using-invalidUsername-admin-firefox\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "safari",
+              "projectName": "safari",
+              "results": [
+                {
+                  "workerIndex": 20,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 4005,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:28.296Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-invalid-login-Verify-48601-using-invalidUsername-admin-safari\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 26,
+                  "parallelIndex": 5,
+                  "status": "passed",
+                  "duration": 3305,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:33.951Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-invalid-login-Verify-48601-using-invalidUsername-admin-mobile\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "invalidLogin",
+              "projectName": "invalidLogin",
+              "results": [
+                {
+                  "workerIndex": 32,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2045,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:38.556Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-invalid-login-Verify-48601-using-invalidUsername-admin-invalidLogin\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bd938e97c1ca30017498-6e10d0e2b82b7459a0d9",
+          "file": "specs/invalid-login.spec.ts",
+          "line": 6,
+          "column": 9
+        },
+        {
+          "title": "Verify that the user cannot login with invalid credentials using admin & invalidPassword",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chrome",
+              "projectName": "chrome",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 2638,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:03.458Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-invalid-login-Verify-26be5-using-admin-invalidPassword-chrome\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 6,
+                  "status": "passed",
+                  "duration": 10686,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:08.887Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-invalid-login-Verify-26be5-using-admin-invalidPassword-firefox\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "safari",
+              "projectName": "safari",
+              "results": [
+                {
+                  "workerIndex": 21,
+                  "parallelIndex": 6,
+                  "status": "passed",
+                  "duration": 3893,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:28.382Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-invalid-login-Verify-26be5-using-admin-invalidPassword-safari\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 27,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 3328,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:34.145Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-invalid-login-Verify-26be5-using-admin-invalidPassword-mobile\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "invalidLogin",
+              "projectName": "invalidLogin",
+              "results": [
+                {
+                  "workerIndex": 33,
+                  "parallelIndex": 5,
+                  "status": "passed",
+                  "duration": 2025,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:38.572Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-invalid-login-Verify-26be5-using-admin-invalidPassword-invalidLogin\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bd938e97c1ca30017498-fb87d8d0dbd4baa97638",
+          "file": "specs/invalid-login.spec.ts",
+          "line": 6,
+          "column": 9
+        }
+      ]
+    },
+    {
+      "title": "specs\\lodash.spec.ts",
+      "file": "specs/lodash.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Verify Lodash bundle is loaded and working",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chrome",
+              "projectName": "chrome",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 4,
+                  "status": "passed",
+                  "duration": 7,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Unique array: [ \u001b[33m1\u001b[39m, \u001b[33m2\u001b[39m, \u001b[33m3\u001b[39m ]\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:03.493Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-lodash-Verify-Lodash-bundle-is-loaded-and-working-chrome\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 12,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Unique array: [ \u001b[33m1\u001b[39m, \u001b[33m2\u001b[39m, \u001b[33m3\u001b[39m ]\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:08.890Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-lodash-Verify-Lodash-bundle-is-loaded-and-working-firefox\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "safari",
+              "projectName": "safari",
+              "results": [
+                {
+                  "workerIndex": 19,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 11,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Unique array: [ \u001b[33m1\u001b[39m, \u001b[33m2\u001b[39m, \u001b[33m3\u001b[39m ]\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:28.278Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-lodash-Verify-Lodash-bundle-is-loaded-and-working-safari\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 28,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 6,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "Unique array: [ \u001b[33m1\u001b[39m, \u001b[33m2\u001b[39m, \u001b[33m3\u001b[39m ]\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:34.171Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-lodash-Verify-Lodash-bundle-is-loaded-and-working-mobile\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4abfef50ed9430676073-466805aeb6de3de0f46f",
+          "file": "specs/lodash.spec.ts",
+          "line": 5,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "specs\\login.spec.ts",
+      "file": "specs/login.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "User can login with valid credentials",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chrome",
+              "projectName": "chrome",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 5,
+                  "status": "passed",
+                  "duration": 2990,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:03.521Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-User-can-login-with-valid-credentials-chrome\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 14,
+                  "parallelIndex": 4,
+                  "status": "passed",
+                  "duration": 5118,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:08.956Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-User-can-login-with-valid-credentials-firefox\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "safari",
+              "projectName": "safari",
+              "results": [
+                {
+                  "workerIndex": 23,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3899,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:28.948Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-User-can-login-with-valid-credentials-safari\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 29,
+                  "parallelIndex": 4,
+                  "status": "passed",
+                  "duration": 3374,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:34.194Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-User-can-login-with-valid-credentials-mobile\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e7da2f3a65ad9cd8e037-c1a64c639e330503b08d",
+          "file": "specs/login.spec.ts",
+          "line": 8,
+          "column": 5
+        },
+        {
+          "title": "An error is displayed when username is empty",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chrome",
+              "projectName": "chrome",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 6,
+                  "status": "passed",
+                  "duration": 3237,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:03.497Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-An-error-is-displayed-when-username-is-empty-chrome\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 13,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 10173,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:08.956Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-An-error-is-displayed-when-username-is-empty-firefox\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "safari",
+              "projectName": "safari",
+              "results": [
+                {
+                  "workerIndex": 22,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 3602,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:28.844Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-An-error-is-displayed-when-username-is-empty-safari\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 30,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3369,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:34.333Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-An-error-is-displayed-when-username-is-empty-mobile\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e7da2f3a65ad9cd8e037-b883080a5cfdfa740484",
+          "file": "specs/login.spec.ts",
+          "line": 15,
+          "column": 5
+        },
+        {
+          "title": "An error is displayed when password is empty",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chrome",
+              "projectName": "chrome",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 7,
+                  "status": "passed",
+                  "duration": 2426,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:03.569Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-An-error-is-displayed-when-password-is-empty-chrome\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 8592,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:09.070Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-An-error-is-displayed-when-password-is-empty-firefox\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "safari",
+              "projectName": "safari",
+              "results": [
+                {
+                  "workerIndex": 18,
+                  "parallelIndex": 5,
+                  "status": "passed",
+                  "duration": 4339,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:28.217Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-An-error-is-displayed-when-password-is-empty-safari\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 31,
+                  "parallelIndex": 7,
+                  "status": "passed",
+                  "duration": 2910,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:34.995Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-An-error-is-displayed-when-password-is-empty-mobile\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e7da2f3a65ad9cd8e037-58d33e1461362b64fc8d",
+          "file": "specs/login.spec.ts",
+          "line": 22,
+          "column": 5
+        },
+        {
+          "title": "An error is displayed when invalid credentials are provided",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chrome",
+              "projectName": "chrome",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 4,
+                  "status": "passed",
+                  "duration": 3353,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:03.610Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-An-error-is-di-cbf23-id-credentials-are-provided-chrome\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 12,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10752,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:08.977Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-An-error-is-di-cbf23-id-credentials-are-provided-firefox\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "safari",
+              "projectName": "safari",
+              "results": [
+                {
+                  "workerIndex": 19,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3645,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:28.448Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-An-error-is-di-cbf23-id-credentials-are-provided-safari\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 28,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 3264,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T19:17:34.295Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Test Automation Projects\\Test Automation Rounds\\playwright-july-round\\pom\\test-output\\specs-login-An-error-is-di-cbf23-id-credentials-are-provided-mobile\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e7da2f3a65ad9cd8e037-98cc26e7669cc24cb71d",
+          "file": "specs/login.spec.ts",
+          "line": 29,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-26T19:17:02.499Z",
+    "duration": 61980.683,
+    "expected": 37,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

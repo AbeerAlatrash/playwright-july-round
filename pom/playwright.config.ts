@@ -12,7 +12,30 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './specs',
+  build: {
+    external: ['**/*bundle.js'],
+  },
+  captureGitInfo: {
+    commit: true, diff: true
+  },
+  respectGitIgnore: true,
+  metadata: {
+    author: 'Ashraf',
+    title: 'Playwright Test Automation',
+    language: 'en'
+  },
+  name: 'AA Practice Test Automation',
+  failOnFlakyTests: !!process.env.CI,
+  // maxFailures: process.env.CI ? 5 : 2,
+  outputDir: './test-output',
+  preserveOutput: 'failures-only',
+  quiet: true,
+  // repeatEach: 4,
+  reportSlowTests: {
+    threshold: 2000,
+    max: 1
+  },
+  //testDir: './specs',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -20,17 +43,17 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 1 : 0, //simplied if
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : 3,
+  workers: process.env.CI ? 1 : '70%',
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    // baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server
-    baseURL: 'http://localhost:5500', //local dev server
+    baseURL: 'https://aa-practice-test-automation.vercel.app', //testing server
+    //  baseURL: 'http://localhost:5500', //local dev server
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'on',
   },
 
   /* Configure projects for major browsers */
