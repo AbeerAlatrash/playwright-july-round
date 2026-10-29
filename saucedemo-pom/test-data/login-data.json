@@ -1,0 +1,10 @@
+{
+    "validCase": {
+        "username": "standard_user",
+        "password": "secret_sauce"
+    },
+    "invalidCase": {
+        "username": "invalid_user",
+        "password": "invalid_password"
+    }
+}
