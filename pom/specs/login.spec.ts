@@ -12,23 +12,12 @@ test('User can login with valid credentials', async ({ page }) => {
     await loginPage.verifyUserIsLoggedIn();
 });
 
-test('An error is displayed when username is empty', async ({ page }) => {
-    loginPage = new LoginPage(page);
-    await loginPage.navigateToLoginPage();
-    await loginPage.login(loginData.emptyUsernameCase.username, loginData.emptyUsernameCase.password);
-    await loginPage.verifyUsernameEmptyError();
-});
-
-test('An error is displayed when password is empty', async ({ page }) => {
-    loginPage = new LoginPage(page);
-    await loginPage.navigateToLoginPage();
-    await loginPage.login(loginData.emptyPasswordCase.username, loginData.emptyPasswordCase.password);
-    await loginPage.verifyPasswordEmptyError();
-});
-
-test('An error is displayed when invalid credentials are provided', async ({ page }) => {
-    loginPage = new LoginPage(page);
-    await loginPage.navigateToLoginPage();
-    await loginPage.login(loginData.invalidPasswordCase.username, loginData.invalidPasswordCase.password);
-    await loginPage.verifyInvalidCredentialsErrorMessage();
+//DDT: the negative cases are read from the "negativeCases" array in login-data.json
+loginData.negativeCases.forEach(({ title, username, password, errorType }) => {
+    test(`An error is displayed when ${title}`, async ({ page }) => {
+        loginPage = new LoginPage(page);
+        await loginPage.navigateToLoginPage();
+        await loginPage.login(username, password);
+        await loginPage.verifyErrorByType(errorType);
+    });
 });

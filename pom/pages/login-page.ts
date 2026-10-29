@@ -57,6 +57,22 @@ export class LoginPage {
         await expect(this.errorMessageLocator).toHaveText(this.errorMessage);
     }
 
+    async verifyErrorByType(errorType: string) {
+        switch (errorType) {
+            case 'emptyUsername':
+                await this.verifyUsernameEmptyError();
+                break;
+            case 'emptyPassword':
+                await this.verifyPasswordEmptyError();
+                break;
+            case 'invalidCredentials':
+                await this.verifyInvalidCredentialsErrorMessage();
+                break;
+            default:
+                throw new Error(`Unknown error type: ${errorType}`);
+        }
+    }
+
     async verifyUserIsOnLoginPage() {
         await expect(this.loginButton).toBeVisible();
     }

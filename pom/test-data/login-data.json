@@ -17,5 +17,26 @@
     "emptyPasswordCase" : {
         "username" : "admin",
         "password" : ""
-    }
+    },
+
+    "negativeCases" : [
+        {
+            "title" : "username is empty",
+            "username" : "",
+            "password" : "admin",
+            "errorType" : "emptyUsername"
+        },
+        {
+            "title" : "password is empty",
+            "username" : "admin",
+            "password" : "",
+            "errorType" : "emptyPassword"
+        },
+        {
+            "title" : "invalid credentials are provided",
+            "username" : "admin",
+            "password" : "wrongpassword",
+            "errorType" : "invalidCredentials"
+        }
+    ]
 }

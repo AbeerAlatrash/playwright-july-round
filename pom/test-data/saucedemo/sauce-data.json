@@ -1,0 +1,33 @@
+{
+    "validUser": {
+        "username": "standard_user",
+        "password": "secret_sauce"
+    },
+
+    "removeProductCases": [
+        { "productName": "Sauce Labs Backpack" },
+        { "productName": "Sauce Labs Bike Light" },
+        { "productName": "Sauce Labs Bolt T-Shirt" }
+    ],
+
+    "checkoutCases": [
+        {
+            "productName": "Sauce Labs Backpack",
+            "firstName": "Abeer",
+            "lastName": "Alatrash",
+            "postalCode": "11118"
+        },
+        {
+            "productName": "Sauce Labs Fleece Jacket",
+            "firstName": "Ahmad",
+            "lastName": "Ali",
+            "postalCode": "11953"
+        },
+        {
+            "productName": "Sauce Labs Onesie",
+            "firstName": "Sara",
+            "lastName": "Khaled",
+            "postalCode": "90210"
+        }
+    ]
+}
