@@ -9,17 +9,18 @@ test.beforeEach(async ({ page }) => {
     await pageManager.getLoginPage().navigateToLoginPage();
 });
 
-test('Login with valid credentials', async () => {
-    await pageManager.getLoginPage().login(loginData.validCase.username, loginData.validCase.password);
-    await pageManager.getInventoryPage().verifyUserIsOnInventoryPage();
+// Test Case 1: Valid Login (DDT)
+loginData.validUsers.forEach(({ username, password }) => {
+    test(`Login with valid credentials - ${username}`, async () => {
+        await pageManager.getLoginPage().login(username, password);
+        await pageManager.getInventoryPage().verifyUserIsOnInventoryPage();
+    });
 });
 
-test('Login with invalid credentials', async () => {
-    await pageManager.getLoginPage().login(loginData.invalidCase.username, loginData.invalidCase.password);
-    await pageManager.getLoginPage().verifyInvalidCredentialsErrorMessage();
-});
-
-test('Login with empty credentials shows username required error', async () => {
-    await pageManager.getLoginPage().clickLoginButton();
-    await pageManager.getLoginPage().verifyUsernameRequiredErrorMessage();
+// Test Case 2: Invalid Login (DDT)
+loginData.invalidUsers.forEach(({ username, password, errorMessage }) => {
+    test(`Login with invalid credentials - username: "${username}" password: "${password}"`, async () => {
+        await pageManager.getLoginPage().login(username, password);
+        await pageManager.getLoginPage().verifyErrorMessage(errorMessage);
+    });
 });

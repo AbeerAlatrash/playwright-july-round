@@ -10,8 +10,6 @@ export class LoginPage {
 
     //Variables
     private readonly loginEndpoint = "/";
-    private readonly invalidCredentialsErrorMessage = "Epic sadface: Username and password do not match any user in this service";
-    private readonly usernameRequiredErrorMessage = "Epic sadface: Username is required";
     private readonly page: Page;
 
     //Constructor
@@ -30,17 +28,11 @@ export class LoginPage {
     async login(username: string, password: string) {
         await this.usernameInput.fill(username);
         await this.passwordInput.fill(password);
-        await this.clickLoginButton();
-    }
-    async clickLoginButton() {
         await this.loginButton.click();
     }
 
     //Assertions
-    async verifyInvalidCredentialsErrorMessage() {
-        await expect(this.errorMessageLocator).toHaveText(this.invalidCredentialsErrorMessage);
-    }
-    async verifyUsernameRequiredErrorMessage() {
-        await expect(this.errorMessageLocator).toHaveText(this.usernameRequiredErrorMessage);
+    async verifyErrorMessage(errorMessage: string) {
+        await expect(this.errorMessageLocator).toHaveText(errorMessage);
     }
 }

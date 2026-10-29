@@ -6,6 +6,7 @@ export class InventoryPage {
     private readonly titleLocator: Locator;
     private readonly inventoryListLocator: Locator;
     private readonly cartBadgeLocator: Locator;
+    private readonly cartLinkLocator: Locator;
 
     //Variables
     private readonly inventoryEndpoint = "/inventory.html";
@@ -18,15 +19,23 @@ export class InventoryPage {
         this.titleLocator = page.locator('[data-test="title"]');
         this.inventoryListLocator = page.locator('[data-test="inventory-list"]');
         this.cartBadgeLocator = page.locator('[data-test="shopping-cart-badge"]');
+        this.cartLinkLocator = page.locator('[data-test="shopping-cart-link"]');
+    }
+
+    //Helpers
+    private productItem(productName: string): Locator {
+        return this.page.locator('[data-test="inventory-item"]').filter({ hasText: productName });
     }
 
     //Actions
     async addProductToCart(productName: string) {
-        await this.page
-            .locator('[data-test="inventory-item"]')
-            .filter({ hasText: productName })
-            .getByRole('button', { name: 'Add to cart' })
-            .click();
+        await this.productItem(productName).getByRole('button', { name: 'Add to cart' }).click();
+    }
+    async removeProductFromCart(productName: string) {
+        await this.productItem(productName).getByRole('button', { name: 'Remove' }).click();
+    }
+    async openCart() {
+        await this.cartLinkLocator.click();
     }
 
     //Assertions
@@ -37,5 +46,8 @@ export class InventoryPage {
     }
     async verifyCartBadgeCount(count: number) {
         await expect(this.cartBadgeLocator).toHaveText(count.toString());
+    }
+    async verifyCartBadgeIsHidden() {
+        await expect(this.cartBadgeLocator).toBeHidden();
     }
 }
